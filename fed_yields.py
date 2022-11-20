@@ -14,8 +14,6 @@ def download_data(tickers, start_date, end_date):
     df = web.DataReader(tickers, 'fred', start_date, end_date)
     return df
 
-st.title(':bank::dollar: US Treasury Yield Curve')
-
 ###### FRED Symbols, and Data Download ######
 
 treasuries = ['DGS1MO', 'DGS3MO', 'DGS6MO', 'DGS1', 'DGS2', 'DGS3', 'DGS5', 'DGS7', 'DGS10', 'DGS20', 'DGS30']
