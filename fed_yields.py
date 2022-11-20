@@ -64,7 +64,7 @@ inversion_matrix['30-year'][10:] = 0
 
 ###### Layout ######
 
-st.table(yield_curve_today.set_index('Treasury Duration').transpose())
+st.dataframe(yield_curve_today.set_index('Treasury Duration').transpose())
 
 col1, col2 = st.columns([1,1])
 
