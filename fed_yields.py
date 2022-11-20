@@ -7,7 +7,7 @@ import streamlit as st
 
 
 ###### Initialization, Starting Functions ######
-st.set_page_config(page_title='US Treasury Yield Curve', page_icon='💵')
+st.set_page_config(page_title='US Treasury Yield Curve', page_icon='💵', layout='wide')
 
 @st.cache
 def download_data(tickers, start_date, end_date):
@@ -79,19 +79,3 @@ st.plotly_chart(fig_inversion_matrix)
 
 
 ###### END ######
-
-###### Description ######
-'''
-The treasury yield curve is a plot of the annualized interest rates for a given length of US debt in the form of U.S. Treasury bills, notes, and bonds. 
-* Bills - 4-52 weeks (up to 1-year)
-* Notes - 2-10 years
-* Bonds - 20-30 years
-Through the purchase of these bonds, a person lends the US Government money for a fixed amount of time and receives interest in return. For example, a 1-year treasury bill may provide 1.1% interest rate, netting the owner \$11 for a $1000 investment. This may seem like very little return, but can be conidered almost "guaranteed" profit as it is backed by the U.S. Government. In fact, the financial term _Risk Free Rate_ is often equated to the return on a 3-month treasury bill.
-
-Data is obtained from https://fred.stlouisfed.org using the symbols: `DGS1MO`, `DGS3MO`, `DGS6MO`, `DGS1`, `DGS2`, `DGS3`, `DGS5`, `DGS7`, `DGS10`, `DGS20`, `DGS30`.
-for which one can purchase at https://www.treasurydirect.gov or on the open market through a trading brokerage. 
-'''
-
-
-
-
