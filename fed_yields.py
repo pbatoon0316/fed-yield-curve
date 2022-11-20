@@ -66,7 +66,7 @@ inversion_matrix['30-year'][10:] = 0
 
 st.table(yield_curve_today.set_index('Treasury Duration').transpose())
 
-col1, col2 = st.columns([2,1])
+col1, col2 = st.columns([1,1])
 
 with col1:
     fig_yield_curve = px.line(yield_curve_today, x='Treasury Duration', y='Yield')
