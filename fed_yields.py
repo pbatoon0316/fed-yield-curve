@@ -33,21 +33,12 @@ idx = idx[::-1]
 date_select = st.select_slider('**Adjust slider to alter date**',
     options=idx,
     value=idx[-1])
-st.write('Showing data for', yield_curve_today.columns[date_select])
+st.write('Showing data for', str(yield_curve_today.columns[date_select])[:11])
 
 
 yield_curve_today = yield_curve_today.iloc[:,[0,date_select]]
 yield_curve_today.columns = ['Treasury Duration','Yield']
 yield_curve_today['Treasury Duration'] = ['1-month', '3-month', '6-month', '1-year', '2-year', '3-year', '5-year', '7-year', '10-year', '20-year', '30-year']
-
-col1, col2 = st.columns([3,1])
-
-with col1:
-    fig_yield_curve = px.line(yield_curve_today, x='Treasury Duration', y='Yield')
-    st.plotly_chart(fig_yield_curve, use_container_width=True)
-
-with col2:
-    st.table(yield_curve_today.set_index('Treasury Duration'))
 
 ###### Yield Investion Matrix ######
 inversion_matrix = pd.DataFrame()
@@ -71,9 +62,16 @@ inversion_matrix['10-year'][8:] = 0
 inversion_matrix['20-year'][9:] = 0 
 inversion_matrix['30-year'][10:] = 0 
 
-fig_inversion_matrix = px.imshow(inversion_matrix, color_continuous_scale='RdYlGn', text_auto=True, zmin=-1, zmax=1)
+###### Layout ######
 
-st.plotly_chart(fig_inversion_matrix)
+st.table(yield_curve_today.set_index('Treasury Duration').transpose())
 
+col1, col2 = st.columns([2,1])
 
-###### END ######
+with col1:
+    fig_yield_curve = px.line(yield_curve_today, x='Treasury Duration', y='Yield')
+    st.plotly_chart(fig_yield_curve, use_container_width=True)
+
+with col2:
+    fig_inversion_matrix = px.imshow(inversion_matrix, color_continuous_scale='RdYlGn', text_auto=True, zmin=-1, zmax=1)
+    st.plotly_chart(fig_inversion_matrix, use_container_width=True)
