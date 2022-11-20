@@ -30,7 +30,7 @@ idx = range(len(yield_curve_today.columns))
 idx = idx[1:]
 idx = idx[::-1]
 
-date_select = st.select_slider('**Adjust slider to alter date**',
+date_select = st.select_slider('**Adjust slider to explore previous yields (5 year history)**',
     options=idx,
     value=idx[-1])
 st.write('Showing data for', str(yield_curve_today.columns[date_select])[:11])
@@ -64,7 +64,7 @@ inversion_matrix['30-year'][10:] = 0
 
 ###### Layout ######
 
-st.dataframe(yield_curve_today.set_index('Treasury Duration').transpose())
+st.table(yield_curve_today.set_index('Treasury Duration').transpose())
 
 col1, col2 = st.columns([1,1])
 
