@@ -77,5 +77,5 @@ with col2:
                                      color_continuous_scale=[(0, "red"), (0.5, "white"), (1, "green")], 
                                      color_continuous_midpoint=0, 
                                      text_auto=True)
-    fig.update_layout(coloraxis_showscale=False)
+    fig_inversion_matrix.update_layout(coloraxis_showscale=False)
     st.plotly_chart(fig_inversion_matrix, use_container_width=True)
