@@ -50,17 +50,17 @@ for i in range(len(yield_curve_today)):
 inversion_matrix.columns = yield_curve_today['Treasury Duration']
 inversion_matrix.set_index(yield_curve_today['Treasury Duration'], inplace = True)
 
-inversion_matrix['1-month'][:] = 0
-inversion_matrix['3-month'][1:] = 0 
-inversion_matrix['6-month'][2:] = 0 
-inversion_matrix['1-year'][3:] = 0 
-inversion_matrix['2-year'][4:] = 0
-inversion_matrix['3-year'][5:] = 0
-inversion_matrix['5-year'][6:] = 0 
-inversion_matrix['7-year'][7:] = 0 
-inversion_matrix['10-year'][8:] = 0 
-inversion_matrix['20-year'][9:] = 0 
-inversion_matrix['30-year'][10:] = 0 
+inversion_matrix['1-month'][:] = None
+inversion_matrix['3-month'][1:] = None 
+inversion_matrix['6-month'][2:] = None 
+inversion_matrix['1-year'][3:] = None
+inversion_matrix['2-year'][4:] = None
+inversion_matrix['3-year'][5:] = None
+inversion_matrix['5-year'][6:] = None
+inversion_matrix['7-year'][7:] = None
+inversion_matrix['10-year'][8:] = None
+inversion_matrix['20-year'][9:] = None
+inversion_matrix['30-year'][10:] = None
 
 ###### Layout ######
 
