@@ -9,7 +9,7 @@ import streamlit as st
 ###### Initialization, Starting Functions ######
 st.set_page_config(page_title='US Treasury Yield Curve', page_icon='💵', layout='wide')
 
-@st.cache
+@st.cache(ttl=60*2)
 def download_data(tickers, start_date, end_date):
     df = web.DataReader(tickers, 'fred', start_date, end_date)
     return df
