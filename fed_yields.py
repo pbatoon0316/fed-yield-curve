@@ -73,5 +73,9 @@ with col1:
     st.plotly_chart(fig_yield_curve, use_container_width=True)
 
 with col2:
-    fig_inversion_matrix = px.imshow(inversion_matrix, color_continuous_scale='RdYlGn', text_auto=True, zmin=-1, zmax=1)
+    fig_inversion_matrix = px.imshow(inversion_matrix, 
+                                     color_continuous_scale=[(0, "red"), (0.5, "white"), (1, "green")], 
+                                     color_continuous_midpoint=0, 
+                                     text_auto=True)
+    fig.update_layout(coloraxis_showscale=False)
     st.plotly_chart(fig_inversion_matrix, use_container_width=True)
