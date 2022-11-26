@@ -39,6 +39,7 @@ st.write('Showing data for', str(yield_curve_today.columns[date_select])[:11])
 yield_curve_today = yield_curve_today.iloc[:,[0,date_select]]
 yield_curve_today.columns = ['Treasury Duration','Yield']
 yield_curve_today['Treasury Duration'] = ['1-month', '3-month', '6-month', '1-year', '2-year', '3-year', '5-year', '7-year', '10-year', '20-year', '30-year']
+yield_curve_today['Duration Months'] = [1, 3, 6, 1*12, 2*12, 3*12, 5*12, 7*12, 10*12, 20*12, 30*12]
 
 ###### Yield Investion Matrix ######
 inversion_matrix = pd.DataFrame()
@@ -69,7 +70,14 @@ st.table(yield_curve_today.set_index('Treasury Duration').transpose())
 col1, col2 = st.columns([1,1])
 
 with col1:
-    fig_yield_curve = px.line(yield_curve_today, x='Treasury Duration', y='Yield')
+    fig_yield_curve = px.line(yield_curve_today, x='Duration Months', y='Yield')
+
+    fig_yield_curve.update_xaxes(title_text='Treasury Duration',
+                                 tickmode='array',
+                                 tickvals=yield_curve_today['Duration Months'],
+                                 ticktext=yield_curve_today['Treasury Duration'],
+                                 tickangle=90)
+
     st.plotly_chart(fig_yield_curve, use_container_width=True)
 
 with col2:
