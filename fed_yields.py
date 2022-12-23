@@ -21,9 +21,13 @@ treasuries = ['DGS1MO', 'DGS3MO', 'DGS6MO', 'DGS1', 'DGS2', 'DGS3', 'DGS5', 'DGS
 end_date = dt.date.today()
 start_date = end_date - dt.timedelta(365*5)
 
-yields = download_data(treasuries, start_date, end_date)
-yields = yields.dropna()
-
+if 'yields' not in st.session_state:
+    st.session_state['yields'] = download_data(treasuries, start_date, end_date)
+    yields = st.session_state['yields']
+    yields = st.session_state['yields'].dropna()
+else:
+    yields = st.session_state['yields']
+    
 ###### Yield Curve ######
 yield_curve_today = yields[::-1].transpose().reset_index()
 idx = range(len(yield_curve_today.columns))
